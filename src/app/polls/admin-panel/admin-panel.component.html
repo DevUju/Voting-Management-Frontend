@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="admin-layout">
+    <div class="create-poll-section">
+      <h2>Create New Poll</h2>
+      <form [formGroup]="createPollForm" (ngSubmit)="onCreatePoll()">
+        <div class="form-group">
+          <label>Poll Title</label>
+          <input type="text" formControlName="title" placeholder="Enter poll title" />
+          <span *ngIf="title.invalid && title.touched" class="error">Title is required</span>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea formControlName="description" placeholder="Enter poll description"></textarea>
+          <span *ngIf="description.invalid && description.touched" class="error">Description is required</span>
+        </div>
+
+        <div class="form-group">
+          <label>Options (2-4 options required)</label>
+          <div *ngFor="let i of [0, 1, 2, 3]; let last = last" class="option-input">
+            <input
+              type="text"
+              [formControl]="getOptionControl(i)"
+              placeholder="Option {{ i + 1 }}"
+              [required]="i < 2"
+            />
+          </div>
+          <span *ngIf="optionsError" class="error">{{ optionsError }}</span>
+        </div>
+
+        <div *ngIf="createErrorMessage" class="alert alert-danger">{{ createErrorMessage }}</div>
+        <div *ngIf="createSuccessMessage" class="alert alert-success">{{ createSuccessMessage }}</div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="createPollForm.invalid || isCreatingPoll">
+          {{ isCreatingPoll ? 'Creating...' : 'Create Poll' }}
+        </button>
+      </form>
+    </div>
+
+    <div class="polls-management-section">
+      <h2>Manage Polls</h2>
+      <div *ngIf="isLoadingPolls" class="loading">
+        <div class="spinner"></div>
+        <p>Loading polls...</p>
+      </div>
+
+      <div *ngIf="!isLoadingPolls && allPolls.length === 0" class="alert alert-info">
+        No polls created yet.
+      </div>
+
+      <div *ngIf="!isLoadingPolls && allPolls.length > 0" class="polls-list">
+        <div *ngFor="let poll of allPolls" class="poll-item">
+          <div class="poll-info">
+            <h3>{{ poll.title }}</h3>
+            <p class="description">{{ poll.description }}</p>
+            <p class="status" [class.closed]="poll.status === 'closed'">
+              Status: <strong>{{ poll.status | uppercase }}</strong>
+            </p>
+          </div>
+          <div class="poll-actions">
+            <button
+              (click)="closePoll(poll.id)"
+              *ngIf="poll.status === 'active'"
+              class="btn btn-warning"
+              [disabled]="isUpdatingPoll"
+            >
+              Close
+            </button>
+            <button (click)="deletePoll(poll.id)" class="btn btn-danger" [disabled]="isUpdatingPoll">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

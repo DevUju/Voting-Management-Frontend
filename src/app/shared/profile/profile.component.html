@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="profile-card">
+    <h2>User Profile</h2>
+    <div *ngIf="isLoading" class="loading">
+      <div class="spinner"></div>
+      <p>Loading profile...</p>
+    </div>
+
+    <div *ngIf="!isLoading && user">
+      <div class="profile-info">
+        <div class="info-item">
+          <label>Name</label>
+          <p>{{ user.name }}</p>
+        </div>
+        <div class="info-item">
+          <label>Email</label>
+          <p>{{ user.email }}</p>
+        </div>
+        <div class="info-item">
+          <label>State</label>
+          <p>{{ user.state }}</p>
+        </div>
+        <div class="info-item">
+          <label>Role</label>
+          <p>
+            <span class="badge" [class.admin]="user.role === 'admin'">{{ user.role | uppercase }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading && !user" class="alert alert-danger">
+      Failed to load profile information.
+    </div>
+  </div>
+</div>

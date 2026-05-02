@@ -1,0 +1,53 @@
+<div class="container">
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading poll...</p>
+  </div>
+
+  <div *ngIf="!isLoading && poll">
+    <div class="poll-detail-card">
+      <h2>{{ poll.title }}</h2>
+      <p class="description">{{ poll.description }}</p>
+      <p class="status" [class.closed]="poll.status === 'closed'">
+        Status: <strong>{{ poll.status | uppercase }}</strong>
+      </p>
+
+      <div *ngIf="poll.status === 'active' && !isAdmin" class="voting-section">
+        <h3>Cast Your Vote</h3>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+        <div *ngIf="hasVoted" class="alert alert-info">You have already voted on this poll</div>
+
+        <div class="options-list" *ngIf="!hasVoted">
+          <div *ngFor="let option of poll.options" class="option-item">
+            <button
+              class="option-btn"
+              (click)="selectOption(option.id)"
+              [class.selected]="selectedOptionId === option.id"
+              [disabled]="isSubmittingVote"
+            >
+              {{ option.optionText }}
+            </button>
+          </div>
+        </div>
+
+        <button
+          *ngIf="!hasVoted"
+          class="btn btn-primary"
+          (click)="submitVote()"
+          [disabled]="!selectedOptionId || isSubmittingVote"
+        >
+          {{ isSubmittingVote ? 'Submitting...' : 'Submit Vote' }}
+        </button>
+      </div>
+
+      <div *ngIf="isAdmin && poll.status === 'active'" class="alert alert-info">
+        Admins cannot vote in polls. You can manage polls from the Admin Panel.
+      </div>
+
+      <div *ngIf="poll.status === 'closed'" class="alert alert-warning">
+        This poll has been closed and no longer accepting votes.
+      </div>
+    </div>
+  </div>
+</div>

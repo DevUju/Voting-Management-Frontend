@@ -1,9 +1,9 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
+import { AppComponent } from './app/shared/app.component';
 import { provideRouter } from '@angular/router';
-import { routes } from './app/app.routes';
+import { routes } from './app/shared/app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './app/interceptors/auth.interceptor';
+import { authInterceptor } from './app/auth/interceptors/auth.interceptor';
 
 bootstrapApplication(AppComponent, {
   providers: [

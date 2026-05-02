@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Poll Results</h2>
+
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading results...</p>
+  </div>
+
+  <div *ngIf="!isLoading && results.length > 0">
+    <div class="filter-section">
+      <label>Filter by State:</label>
+      <select [(ngModel)]="selectedState" (change)="filterResults()">
+        <option value="">All States</option>
+        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+      </select>
+    </div>
+
+    <div class="results-section">
+      <div *ngFor="let result of displayedResults" class="result-item">
+        <div class="result-header">
+          <h3>{{ result.optionText }}</h3>
+          <span class="vote-count">{{ result.totalVotes }} {{ result.totalVotes === 1 ? 'vote' : 'votes' }}</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="getPercentage(result)"></div>
+        </div>
+        <div *ngIf="selectedState && result.stateBreakdown[selectedState]" class="state-info">
+          {{ selectedState }}: {{ result.stateBreakdown[selectedState] }} votes
+        </div>
+      </div>
+    </div>
+
+    <div class="total-votes">
+      <p>Total votes: {{ getTotalVotes() }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && results.length === 0" class="alert alert-info">
+    No votes have been cast yet.
+  </div>
+</div>

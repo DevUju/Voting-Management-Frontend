@@ -1,0 +1,77 @@
+.poll-detail-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.status {
+  padding: 0.5rem 1rem;
+  background-color: var(--light-color);
+  border-radius: 0.25rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.status.closed {
+  background-color: #ffe0e0;
+  color: var(--danger-color);
+}
+
+.voting-section {
+  margin-top: 2rem;
+}
+
+.voting-section h3 {
+  margin-bottom: 1rem;
+}
+
+.options-list {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option-item {
+  display: flex;
+}
+
+.option-btn {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+  background-color: white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.option-btn:hover {
+  border-color: var(--primary-color);
+  background-color: rgba(0, 123, 255, 0.05);
+}
+
+.option-btn.selected {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.option-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
