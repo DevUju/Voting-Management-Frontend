@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 export interface User {
   id: string;
@@ -39,7 +40,7 @@ export class AuthService {
   private tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
   public token$ = this.tokenSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
     if (token && user) {
@@ -75,6 +76,8 @@ export class AuthService {
     localStorage.removeItem('user');
     this.tokenSubject.next(null);
     this.currentUserSubject.next(null);
+    this.router.navigate(['/login']);
+
   }
 
   getProfile(): Observable<User> {
