@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService, User } from '../../auth/auth.service';
+import { AuthService, User } from '../auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
   loadProfile(): void {
     this.authService.getProfile().subscribe({
-      next: (data) => {
+      next: (data: User) => {
         this.user = data;
         this.isLoading = false;
       },

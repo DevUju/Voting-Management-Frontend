@@ -30,7 +30,7 @@ export interface VoteResult {
   providedIn: 'root',
 })
 export class VoteService {
-  private apiUrl = `${environment.apiUrl}/${environment.apiVersion}/votes`;
+  private apiUrl = `${environment.apiUrl}/votes`;
 
   constructor(private http: HttpClient) {}
 

@@ -34,7 +34,7 @@ export interface UpdatePollRequest {
   providedIn: 'root',
 })
 export class PollService {
-  private apiUrl = `${environment.apiUrl}/${environment.apiVersion}/polls`;
+  private apiUrl = `${environment.apiUrl}/polls`;
 
   constructor(private http: HttpClient) {}
 

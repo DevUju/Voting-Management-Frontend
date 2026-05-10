@@ -34,7 +34,7 @@ export interface LoginRequest {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}/${environment.apiVersion}/auth`;
+  private apiUrl = `${environment.apiUrl}/auth`;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
   private tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));

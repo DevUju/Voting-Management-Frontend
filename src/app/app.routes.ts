@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from '../auth/login/login.component';
-import { SignupComponent } from '../auth/signup/signup.component';
-import { DashboardComponent } from '../polls/dashboard/dashboard.component';
-import { PollDetailComponent } from '../polls/poll-detail/poll-detail.component';
-import { ResultsComponent } from '../votes/results/results.component';
-import { AdminPanelComponent } from '../polls/admin-panel/admin-panel.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { DashboardComponent } from './polls/dashboard/dashboard.component';
+import { PollDetailComponent } from './polls/poll-detail/poll-detail.component';
+import { ResultsComponent } from './votes/results/results.component';
+import { AdminPanelComponent } from './polls/admin-panel/admin-panel.component';
 import { ProfileComponent } from './profile/profile.component';
-import { authGuard, adminGuard } from '../auth/guards/auth.guard';
+import { authGuard, adminGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
