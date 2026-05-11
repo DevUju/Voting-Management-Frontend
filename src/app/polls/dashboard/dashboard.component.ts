@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { PollService, Poll } from '../poll.service';
 import { AuthService } from '../../auth/auth.service';
 
@@ -16,7 +16,11 @@ export class DashboardComponent implements OnInit {
   isLoading = true;
   isAdmin = false;
 
-  constructor(private pollService: PollService, private authService: AuthService) {}
+  constructor(
+    private pollService: PollService,
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     const user = this.authService.getCurrentUser();
@@ -34,5 +38,9 @@ export class DashboardComponent implements OnInit {
         this.isLoading = false;
       },
     });
+  }
+
+  editPoll(poll: Poll): void {
+    this.router.navigate(['/admin'], { queryParams: { pollId: poll.id } });
   }
 }

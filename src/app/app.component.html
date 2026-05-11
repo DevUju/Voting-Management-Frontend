@@ -1,19 +1,5 @@
 <div class="app">
-  <nav class="navbar">
-    <div class="container">
-      <div class="nav-brand">
-        <h1>Poll & Voting System</h1>
-      </div>
-      <div class="nav-menu">
-        <a routerLink="/dashboard" *ngIf="isAuthenticated$ | async">Dashboard</a>
-        <a routerLink="/admin" *ngIf="(isAuthenticated$ | async) && (isAdmin$ | async)">Admin</a>
-        <a routerLink="/profile" *ngIf="isAuthenticated$ | async">Profile</a>
-        <a routerLink="/login" *ngIf="!(isAuthenticated$ | async)">Login</a>
-        <a routerLink="/signup" *ngIf="!(isAuthenticated$ | async)">Sign Up</a>
-        <button (click)="logout()" *ngIf="isAuthenticated$ | async" class="btn btn-secondary">Logout</button>
-      </div>
-    </div>
-  </nav>
+  <app-header></app-header>
   <main>
     <router-outlet></router-outlet>
   </main>

@@ -6,17 +6,17 @@
 }
 
 .poll-card {
-  background-color: white;
+  background-color: var(--surface-color);
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  box-shadow: 0 16px 34px rgba(16, 32, 26, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .poll-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 24px 48px rgba(16, 32, 26, 0.12);
 }
 
 .poll-card h3 {
@@ -30,8 +30,9 @@
 
 .poll-actions {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .btn {

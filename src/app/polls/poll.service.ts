@@ -28,6 +28,7 @@ export interface UpdatePollRequest {
   title?: string;
   description?: string;
   status?: 'active' | 'closed';
+  options?: { id: string; optionText: string }[];
 }
 
 @Injectable({

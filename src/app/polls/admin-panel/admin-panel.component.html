@@ -1,8 +1,17 @@
 <div class="container">
   <div class="admin-layout">
     <div class="create-poll-section">
-      <h2>Create New Poll</h2>
+      <h2>{{ isEditMode ? 'Update Poll' : 'Create New Poll' }}</h2>
       <form [formGroup]="createPollForm" (ngSubmit)="onCreatePoll()">
+        <div class="form-row">
+          <button type="submit" class="btn btn-primary" [disabled]="createPollForm.invalid || isCreatingPoll || isSavingPoll">
+            {{ isEditMode ? (isSavingPoll ? 'Updating...' : 'Update Poll') : (isCreatingPoll ? 'Creating...' : 'Create Poll') }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="onBack()">
+            {{ isEditMode ? 'Cancel Update' : 'Back to Dashboard' }}
+          </button>
+        </div>
+
         <div class="form-group">
           <label>Poll Title</label>
           <input type="text" formControlName="title" placeholder="Enter poll title" />
@@ -17,7 +26,7 @@
 
         <div class="form-group">
           <label>Options (2-4 options required)</label>
-          <div *ngFor="let i of [0, 1, 2, 3]; let last = last" class="option-input">
+          <div *ngFor="let i of [0, 1, 2, 3]" class="option-input">
             <input
               type="text"
               [formControl]="getOptionControl(i)"
@@ -30,10 +39,8 @@
 
         <div *ngIf="createErrorMessage" class="alert alert-danger">{{ createErrorMessage }}</div>
         <div *ngIf="createSuccessMessage" class="alert alert-success">{{ createSuccessMessage }}</div>
-
-        <button type="submit" class="btn btn-primary" [disabled]="createPollForm.invalid || isCreatingPoll">
-          {{ isCreatingPoll ? 'Creating...' : 'Create Poll' }}
-        </button>
+        <div *ngIf="editErrorMessage" class="alert alert-danger">{{ editErrorMessage }}</div>
+        <div *ngIf="editSuccessMessage" class="alert alert-success">{{ editSuccessMessage }}</div>
       </form>
     </div>
 
@@ -62,11 +69,14 @@
               (click)="closePoll(poll.id)"
               *ngIf="poll.status === 'active'"
               class="btn btn-warning"
-              [disabled]="isUpdatingPoll"
+              [disabled]="isUpdatingPoll || isSavingPoll"
             >
               Close
             </button>
-            <button (click)="deletePoll(poll.id)" class="btn btn-danger" [disabled]="isUpdatingPoll">
+            <button (click)="enterEditMode(poll)" class="btn btn-update" [disabled]="isUpdatingPoll || isSavingPoll">
+              Update
+            </button>
+            <button (click)="deletePoll(poll.id)" class="btn btn-danger" [disabled]="isUpdatingPoll || isSavingPoll">
               Delete
             </button>
           </div>
