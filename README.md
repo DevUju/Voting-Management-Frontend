@@ -132,8 +132,6 @@ src/
 ### Available Scripts
 - `npm start` - Start development server
 - `npm run build` - Build for production
-- `npm run test` - Run unit tests
-- `npm run lint` - Run ESLint
 
 ### Code Quality
 - Follows Angular style guide
