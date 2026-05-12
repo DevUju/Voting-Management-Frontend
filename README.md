@@ -1,81 +1,155 @@
-# Frontend - Poll & Voting System
+# Poll & Voting System
 
-Angular 17 frontend for the Poll & Voting System application.
+A modern, responsive web application for creating, managing, and participating in polls and voting systems. Built with Angular 17, this application provides a seamless experience for users to create polls, vote on them, and view results, while administrators can manage the entire system.
 
-## 📋 Prerequisites
+##  Features
 
-- Node.js (v18+)
-- npm
-- Angular CLI (installed globally or via npx)
+### For Users
+- **User Authentication**: Secure login and signup functionality
+- **Dashboard**: View all active polls in a clean, organized layout
+- **Voting**: Participate in polls with a user-friendly interface
+- **Results**: View poll results with percentage breakdowns and state-wise filtering
+- **Profile Management**: Update personal information
 
-## 🚀 Quick Start
+### For Administrators
+- **Poll Creation**: Create new polls with multiple options (2-4 options required)
+- **Poll Management**: Update, close, or delete existing polls
+- **Admin Panel**: Comprehensive interface for managing all polls
+- **Real-time Updates**: Immediate feedback on poll status changes
 
-### 1. Install Dependencies
+### Design & UX
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Modern UI**: Clean, professional interface using a custom color palette
+- **Accessibility**: Built with accessibility best practices
+- **State-wise Results**: Filter voting results by Nigerian states
+
+##  Color Palette
+
+- **Primary**: #1F6F5F (Headers, main elements)
+- **Secondary**: #2FA084 (Buttons, highlights)
+- **Accent**: #6FCF97 (Hover states, confirmations)
+- **Background**: #EEEEEE (Neutral backgrounds)
+- **Fonts**: Inter, Roboto, Open Sans (fallback)
+
+##  Tech Stack
+
+- **Frontend Framework**: Angular 17
+- **Language**: TypeScript
+- **Styling**: CSS with custom properties
+- **State Management**: RxJS for reactive programming
+- **HTTP Client**: Angular HttpClient
+- **Forms**: Reactive Forms with validation
+- **Routing**: Angular Router with guards
+- **Build Tool**: Angular CLI
+
+##  Prerequisites
+
+- Node.js (v18 or higher)
+- npm (comes with Node.js)
+- Angular CLI (v17+)
+
+##  Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd poll_system
+```
+
+### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Start Development Server
+### 3. Configure Environment
+Update `src/environments/environment.ts` with your backend API URL:
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api/v1'
+};
+```
+
+### 4. Start Development Server
+```bash
+ng serve
+```
+Or using npm script:
 ```bash
 npm start
 ```
 
-Navigate to http://localhost:4200 in your browser.
+Navigate to `http://localhost:4200` in your browser.
 
-## 📁 Project Structure
+### 5. Build for Production
+```bash
+ng build --prod
+```
+
+##  Usage
+
+### User Flow
+1. **Register/Login**: Create an account or log in
+2. **Browse Polls**: View active polls on the dashboard
+3. **Vote**: Select your preferred option and submit
+4. **View Results**: Check poll outcomes and statistics
+
+### Admin Flow
+1. **Access Admin Panel**: Navigate to `/admin` (admin role required)
+2. **Create Polls**: Use the form to create new polls with 2-4 options
+3. **Manage Polls**: Update existing polls, close voting, or delete polls
+4. **Monitor Activity**: View all polls and their current status
+
+##  Project Structure
 
 ```
 src/
 ├── app/
-│   ├── pages/              # Route components
-│   │   ├── login/
-│   │   ├── signup/
-│   │   ├── dashboard/
-│   │   ├── poll-detail/
-│   │   ├── results/
-│   │   ├── admin-panel/
-│   │   └── profile/
-│   ├── services/           # HTTP services
-│   │   ├── auth.service.ts
-│   │   ├── poll.service.ts
-│   │   └── vote.service.ts
-│   ├── guards/             # Route guards
-│   │   └── auth.guard.ts
-│   ├── interceptors/       # HTTP interceptors
-│   │   └── auth.interceptor.ts
-│   ├── app.component.ts    # Root component
-│   └── app.routes.ts       # Route definitions
-├── styles.scss             # Global styles
-├── main.ts                 # Entry point
-└── index.html             # HTML template
+│   ├── auth/                    # Authentication components
+│   │   ├── login/              # Login component
+│   │   ├── signup/             # Signup component
+│   │   ├── guards/             # Route guards
+│   │   └── interceptors/       # HTTP interceptors
+│   ├── polls/                  # Poll-related components
+│   │   ├── dashboard/          # Poll listing
+│   │   ├── poll-detail/        # Individual poll view
+│   │   ├── admin-panel/        # Admin management interface
+│   │   └── poll.service.ts     # Poll API service
+│   ├── votes/                  # Voting components
+│   │   ├── results/            # Results display
+│   │   └── vote.service.ts     # Vote API service
+│   ├── profile/                # User profile management
+│   ├── header/                 # Navigation header
+│   ├── app.component.*         # Root component
+│   └── app.routes.ts           # Application routes
+├── environments/               # Environment configurations
+├── styles.css                  # Global styles
+└── index.html                  # Main HTML template
 ```
 
-## 🎯 Pages & Components
+##  Development
 
-### Authentication Pages
-- **Login** (`/login`) - User login
-- **Signup** (`/signup`) - User registration with state selection
+### Available Scripts
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm run test` - Run unit tests
+- `npm run lint` - Run ESLint
 
-### User Pages
-- **Dashboard** (`/dashboard`) - List of active polls
-- **Poll Detail** (`/poll/:id`) - Vote on a specific poll
-- **Results** (`/results/:id`) - View poll results with state filtering
-- **Profile** (`/profile`) - View user information
+### Code Quality
+- Follows Angular style guide
+- Uses TypeScript strict mode
+- Implements reactive forms with validation
+- Includes error handling and loading states
 
-### Admin Pages
-- **Admin Panel** (`/admin`) - Create, manage, and close polls
+##  Contributing
 
-## 📦 Available Scripts
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-```bash
-npm start              # Start dev server (ng serve)
-npm run build          # Build for production
-npm run watch          # Build with watch mode
-npm run test           # Run unit tests
-npm run lint           # Run linter
-```
-
-## 🔑 Key Features
+##  Key Features
 
 ### Services
 
@@ -105,7 +179,7 @@ npm run lint           # Run linter
 
 **authInterceptor** - Automatically adds JWT token to requests
 
-## 🎨 Styling
+##  Styling
 
 The application uses SCSS with a custom CSS variable-based design system:
 
@@ -119,7 +193,7 @@ The application uses SCSS with a custom CSS variable-based design system:
 
 Responsive design with mobile-first approach.
 
-## 🔐 Authentication Flow
+##  Authentication Flow
 
 1. User signs up → Account created with state
 2. User logs in → JWT token received and stored
@@ -127,28 +201,23 @@ Responsive design with mobile-first approach.
 4. Token validated on protected routes
 5. User logged out → Token cleared
 
-## 📡 API Integration
+##  API Integration
 
 Backend API configuration in services:
 ```typescript
-private apiUrl = 'http://localhost:3000/api/...';
+private apiUrl = 'http://localhost:3000/api/v1';
 ```
 
 Update to your backend URL if different.
 
-## 🧪 Testing
 
-```bash
-npm run test          # Run unit tests
-```
-
-## 📱 Responsive Design
+##  Responsive Design
 
 - **Desktop** (1024px+) - Full layout with side-by-side components
 - **Tablet** (768px-1023px) - Adjusted grid layout
 - **Mobile** (< 768px) - Stacked layout
 
-## 🚀 Production Build
+##  Production Build
 
 ```bash
 npm run build
@@ -157,7 +226,7 @@ npm run build
 
 Deploy the `dist/poll-voting-frontend` folder to your hosting.
 
-## 🔧 Configuration
+##  Configuration
 
 ### API Endpoint
 Update in service files if backend URL changes:
@@ -168,10 +237,10 @@ private apiUrl = 'http://your-backend-url:3000/api/...';
 ### Frontend URL (for CORS)
 Update backend `.env` file:
 ```env
-FRONTEND_URL=http://your-frontend-url
+FRONTEND_URL=http://localhost:4200/
 ```
 
-## 🎯 User Flows
+##  User Flows
 
 ### Registration Flow
 1. Visit `/signup`
@@ -191,9 +260,9 @@ FRONTEND_URL=http://your-frontend-url
 2. Navigate to `/admin`
 3. Create new poll with 2-4 options
 4. View and manage created polls
-5. Close or delete polls as needed
+5. Close, Reopen or delete polls as needed
 
-## 📊 Data Models
+##  Data Models
 
 ### User
 ```typescript
@@ -231,14 +300,14 @@ FRONTEND_URL=http://your-frontend-url
 }
 ```
 
-## 🛡️ Security
+##  Security
 
 - JWT tokens stored in localStorage
 - Automatic token inclusion in API requests
 - Route guards protect authenticated pages
 - Admin-only pages require admin role
 
-## 📋 Form Validation
+##  Form Validation
 
 - **Reactive Forms** with real-time validation
 - Email format validation
@@ -246,14 +315,14 @@ FRONTEND_URL=http://your-frontend-url
 - Required field validation
 - State selection required
 
-## ⚠️ Error Handling
+##  Error Handling
 
 - API errors displayed in alert messages
 - Loading states for async operations
 - Graceful fallbacks for failed requests
 - User-friendly error messages
 
-## 🚨 Troubleshooting
+##  Troubleshooting
 
 ### Port 4200 already in use
 ```bash
@@ -273,7 +342,7 @@ Ensure backend `.env` has correct `FRONTEND_URL`
 Check browser localStorage settings
 Ensure CORS credentials enabled
 
-## 📖 Component Examples
+##  Component Examples
 
 ### Login Component
 - Form validation
@@ -290,7 +359,7 @@ Ensure CORS credentials enabled
 - State filtering
 - Progress bar visualization
 
-## 🤝 Contributing
+##  Contributing
 
 1. Create feature branch: `git checkout -b feature/name`
 2. Make changes
@@ -299,10 +368,11 @@ Ensure CORS credentials enabled
 5. Push: `git push origin feature/name`
 6. Submit PR
 
-## 📧 Support
 
-For issues or questions, open an issue on the repository.
+##  Support
+
+For questions or support, please open an issue in the repository or contact the development team.
 
 ---
 
-**Built with Angular 17** ✨
+**Built with Angular 17** 
