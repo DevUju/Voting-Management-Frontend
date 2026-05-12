@@ -16,8 +16,7 @@
       <p class="text-muted">{{ poll.options.length }} options</p>
       <div class="poll-actions">
         <a *ngIf="!isAdmin" [routerLink]="['/poll', poll.id]" class="btn btn-primary">Vote</a>
-        <a [routerLink]="['/results', poll.id]" class="btn btn-secondary">View Results</a>
-        <button *ngIf="isAdmin" type="button" (click)="editPoll(poll)" class="btn btn-update">Update Poll</button>
+        <a *ngIf="isAdmin" [routerLink]="['/results', poll.id]" class="btn btn-secondary">View Results</a>
       </div>
     </div>
   </div>

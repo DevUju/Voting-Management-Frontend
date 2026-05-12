@@ -73,10 +73,25 @@
             >
               Close
             </button>
-            <button (click)="enterEditMode(poll)" class="btn btn-update" [disabled]="isUpdatingPoll || isSavingPoll">
+            <button
+              (click)="reopenPoll(poll.id)"
+              *ngIf="poll.status === 'closed'"
+              class="btn btn-success"
+              [disabled]="isUpdatingPoll"
+            >
+              Reopen Poll
+            </button>
+            <button 
+              (click)="enterEditMode(poll)" 
+              *ngIf="poll.status === 'active'"
+              class="btn btn-update" 
+              [disabled]="isUpdatingPoll || isSavingPoll">
               Update
             </button>
-            <button (click)="deletePoll(poll.id)" class="btn btn-danger" [disabled]="isUpdatingPoll || isSavingPoll">
+            <button 
+              (click)="deletePoll(poll.id)" 
+              class="btn btn-danger" 
+              [disabled]="isUpdatingPoll || isSavingPoll">
               Delete
             </button>
           </div>

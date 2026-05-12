@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
 
 export interface PollOption {
   id: string;
@@ -12,7 +12,7 @@ export interface Poll {
   id: string;
   title: string;
   description: string;
-  status: 'active' | 'closed';
+  status: "active" | "closed";
   createdAt: Date;
   updatedAt: Date;
   options: PollOption[];
@@ -27,12 +27,12 @@ export interface CreatePollRequest {
 export interface UpdatePollRequest {
   title?: string;
   description?: string;
-  status?: 'active' | 'closed';
+  status?: "active" | "closed";
   options?: { id: string; optionText: string }[];
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class PollService {
   private apiUrl = `${environment.apiUrl}/polls`;
@@ -57,6 +57,10 @@ export class PollService {
 
   updatePoll(pollId: string, request: UpdatePollRequest): Observable<Poll> {
     return this.http.patch<Poll>(`${this.apiUrl}/${pollId}`, request);
+  }
+
+  reopenPoll(pollId: string) {
+    return this.http.post(`${this.apiUrl}/${pollId}/reopen`, {});
   }
 
   deletePoll(pollId: string): Observable<{ message: string }> {
