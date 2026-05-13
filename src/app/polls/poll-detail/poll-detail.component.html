@@ -16,7 +16,6 @@
         <h3>Cast Your Vote</h3>
         <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
         <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
-        <!-- <div *ngIf="hasVoted" class="alert alert-info">You have already voted on this poll</div> -->
 
         <div class="options-list" *ngIf="!hasVoted">
           <div *ngFor="let option of poll.options" class="option-item">
