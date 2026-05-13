@@ -104,8 +104,6 @@ export class AdminPanelComponent implements OnInit {
     this.isLoadingPolls = true;
     this.pollService.getPollById(pollId).subscribe({
       next: (poll) => {
-        console.log("Loaded poll for edit:", poll);
-        console.log("Poll options:", poll.options);
         this.enterEditMode(poll);
         this.isLoadingPolls = false;
       },
@@ -130,8 +128,6 @@ export class AdminPanelComponent implements OnInit {
       return option.optionText;
     });
 
-    console.log("Setting option texts:", optionTexts);
-    console.log("Stored option IDs:", this.existingOptionIds);
     this.setOptionControls(optionTexts);
     this.createPollForm.patchValue({
       title: poll.title,
